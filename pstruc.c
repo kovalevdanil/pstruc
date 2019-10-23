@@ -8,13 +8,12 @@
 
 static char spaces[128];
 
-void print_structure(const char *dir_path, int spaces_num)
+int print_structure(const char *dir_path, int spaces_num)
 {
 	DIR *dir = opendir(dir_path);
 	if (dir == NULL)
 	{
-		perror("opendir");
-		return;
+		return -1;
 	}
 
 	struct dirent *d;
@@ -49,7 +48,11 @@ int main(int argc, char **argv)
 		return -1;
 
 	memset(spaces, ' ', 128);
-	print_structure(target_dir, 0);
+	if (print_structure(target_dir, 0) == -1)
+	{
+		perror("opendir");
+		return -1;
+	}
 
 	return 0;
 }
