@@ -35,7 +35,7 @@ int print_structure(const char *dir_path, int spaces_num)
 
 	closedir(dir);
 
-	return 1;
+	return 0;
 }
 
 int main(int argc, char **argv)
